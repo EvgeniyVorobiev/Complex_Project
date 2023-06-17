@@ -22,6 +22,9 @@ public class DishProduct {
     @JoinColumn(name = "id_product", nullable = false)
     private Product idProduct;
 
+    @Column(name = "product_weight_netto")
+    private Float productWeightNetto;
+
     public DishProductId getId() {
         return id;
     }
@@ -44,6 +47,14 @@ public class DishProduct {
 
     public void setIdProduct(Product idProduct) {
         this.idProduct = idProduct;
+    }
+
+    public Float getProductWeightNetto() {
+        return productWeightNetto;
+    }
+
+    public void setProductWeightNetto(Float productWeightNetto) {
+        this.productWeightNetto = productWeightNetto;
     }
 
 }
