@@ -8,9 +8,9 @@
     <h3>788 Блюд для ДОО, Москва</h3>
 
     <div class="dishSetCards">
-        <div class="container">
-            <div class="row gy-5">
-                <div class="col-xs-12 col-sm-6 col-md-3">
+        <b-container class="container">
+            <b-row class="row gy-5">
+                <b-col cols="3">
                     <a class="cardSet" @click="showDishesForm">
                         <b-card
                         img-src="https://pbprog.ru/tk/img/tehnokarta/bluda/1.jpg"
@@ -20,10 +20,10 @@
                             <div><b-card-text class="dishCardsTitle">Блюда из вареных яиц</b-card-text></div>
                         </b-card>
                     </a>
-                </div>
+                </b-col>
                 
-                <div class="col-xs-12 col-sm-6 col-md-3">
-                    <a class="cardSet" href="">
+                <b-col cols="3">
+                    <a class="cardSet" @click="showDishesForm">
                         <b-card
                         img-src="https://pbprog.ru/tk/img/tehnokarta/bluda/1.jpg"
                         img-alt="Image"
@@ -32,9 +32,20 @@
                             <div><b-card-text class="dishCardsTitle">Блюда из вареных яиц</b-card-text></div>
                         </b-card>
                     </a>
-                </div>  
-            </div>   
-        </div>
+                </b-col>
+                
+                <b-col cols="3">
+                    <a class="cardSet" @click="showDishesForm">
+                        <b-card
+                        id="dishCardSet">
+                            <b-icon-plus style="height: 134px; width: 134px;" class="plus-icon"></b-icon-plus>
+                            <div><b-card-text class="dishCardsTitle">Создать сборник рецептур</b-card-text></div>
+                        </b-card>
+                    </a>
+                </b-col>
+                
+            </b-row>   
+        </b-container>
     </div>
     <b-modal ref="dishes" hide-footer hide-header>
                             <div class="container" id="dishesForm">
@@ -90,17 +101,17 @@ hideDishesForm(){
 
 #closeDiv{
     position: absolute;
-    left: 100%;
+    left: 105%;
 }
-:hover .closeDiv{
-    color:whitesmoke;
+:hover .close{
+    color:white;
 }
 .close{
-    /* top: -2%; */
+    top: -2%;
     cursor: pointer;
-    /* width: 60px; 
-    height: 60px;  */
-    color:lightgray;
+    width: 40px; 
+    height: 40px; 
+    color:whitesmoke;
 }
 
 #toMain{
@@ -113,10 +124,21 @@ hideDishesForm(){
 }
 .dishSetCards{
     padding-top: 30px;
+    padding-bottom: 100px;
+}
+.card{
+    margin-top: 30px;
 }
 .cardSet{
     text-decoration: none;
     color: black;
     cursor: pointer;
+}
+.plus-icon{
+    text-align: center; 
+    color: grey;
+}
+.cardSet:hover .plus-icon{
+    color:black ;
 }
 </style>

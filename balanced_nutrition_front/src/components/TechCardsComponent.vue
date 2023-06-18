@@ -6,25 +6,25 @@
     </b-breadcrumb>
     <h3>Технологические карты блюд</h3>
     <div class="searchDishes">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-11 col-sm-11 col-md-11">
+        <b-container class="container">
+            <b-row class="row">
+                <b-col cols="11">
                     <b-form-input type="text" placeholder="Введите название блюда" value=""></b-form-input>
-                </div>
-                <div class="col-xs-1 col-sm-1 col-md-1">
+                </b-col>
+                <b-col cols="1">
                     <b-button pill variant="light"><b-icon icon="search"></b-icon></b-button>
-                </div>
-            </div>
-            <div class="row" id="filter">
-                <div class="col-xs-1 col-sm-2 col-md-2">Способ приготовления:</div>
-                <div class="col-xs-2 col-sm-3 col-md-3"><b-form-select class="form-select" v-model="selectedDishProcessing" :options="options"></b-form-select></div>
-                <div class="col-xs-1 col-sm-2 col-md-2" style="text-align: center;">Вес блюда от </div>
-                <div class="col-xs-1 col-sm-1 col-md-1"><b-form-input v-model="text"></b-form-input></div>
-                <div class="col-xs-1 col-sm-1 col-md-1" style="text-align: center;">до</div>
-                <div class="col-xs-1 col-sm-1 col-md-1"><b-form-input v-model="text"></b-form-input></div>
-            </div>
-            <div class="row gy-5" id="dishes">
-                <div class="col-xs-12 col-sm-6 col-md-3">
+                </b-col>
+            </b-row>
+            <b-row class="row" id="filter">
+                <b-col cols="2">Способ приготовления:</b-col>
+                <b-col cols="3"><b-form-select class="form-select" v-model="selectedDishProcessing" :options="options"></b-form-select></b-col>
+                <b-col cols="2" style="text-align: center;">Вес блюда от </b-col>
+                <b-col cols="1"><b-form-input v-model="text"></b-form-input></b-col>
+                <b-col cols="1" style="text-align: center;">до</b-col>
+                <b-col cols="1"><b-form-input v-model="text"></b-form-input></b-col>
+            </b-row>
+            <b-row class="row gy-5" id="dishes">
+                <b-col cols="3">
                     <a class="dish" href="/dishInfo">
                         <b-card
                         img-src="https://pbprog.ru/tk/img/tehnokarta/bluda/1.jpg"
@@ -34,48 +34,41 @@
                             <div><b-card-text class="dishCardsTitle">Блюдо</b-card-text></div>
                         </b-card>
                     </a>
-                </div>
-            </div>
-        </div>
+                </b-col>
+            </b-row>
+        </b-container>
     </div>
     <h3 class="dishSets">Сборники блюд</h3>
     <div class="dishCards">
-    <div class="container">
-        <div class="row gy-5">
-            <div class="col-xs-12 col-sm-6 col-md-4">
+    <b-container class="container">
+        <b-row class="row gy-5">
+            <b-col cols="4">
                 <div class="p-3" id="dishCardSet">
                     <a class="cardSet" href="/dishSetCards">    
                         <p class="dishNumber">788</p>
                         <div><p class="dishCardsTitle">Блюд для ДОО, Москва</p></div>
                     </a>
                 </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-4">
+            </b-col>
+            <b-col cols="4">
                 <div class="p-3" id="dishCardSet">
                     <a class="cardSet" href="/dishSetCards">    
                         <p class="dishNumber">788</p>
                         <div><p class="dishCardsTitle">Блюд для ДОО, Москва</p></div>
                     </a>
                 </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-4">
+            </b-col>
+            
+            <b-col cols="4">
                 <div class="p-3" id="dishCardSet">
                     <a class="cardSet" href="/dishSetCards">    
-                        <p class="dishNumber">788</p>
-                        <div><p class="dishCardsTitle">Блюд для ДОО, Москва</p></div>
+                        <p class="dishNumber"><b-icon-plus-lg style=""></b-icon-plus-lg></p>
+                        <div><p class="dishCardsTitle">Создать сборник блюд</p></div>
                     </a>
                 </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-4">
-                <div class="p-3" id="dishCardSet">
-                    <a class="cardSet" href="/dishSetCards">    
-                        <p class="dishNumber">788</p>
-                        <div><p class="dishCardsTitle">Блюд для ДОО, Москва</p></div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
+            </b-col>
+        </b-row>
+    </b-container>
     </div>
 </body>
 </template>
@@ -127,7 +120,8 @@
     padding-top: 60px;
 }
 .dishCards{
-    padding-top: 30px;
+    padding-top: 20px;
+    padding-bottom: 100px;
     
 }
 
@@ -135,6 +129,7 @@
 #dishCardSet{
     box-shadow: 0 5px 20px 0 rgba(0,0,0,0.2);
     border-radius: 5px;
+    margin-top: 30px;
     /* column-width: auto;
     height: auto; */
 }

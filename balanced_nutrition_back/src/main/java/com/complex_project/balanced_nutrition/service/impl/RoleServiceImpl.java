@@ -5,6 +5,7 @@ import com.complex_project.balanced_nutrition.entity.Role;
 import com.complex_project.balanced_nutrition.repository.RoleRepository;
 import com.complex_project.balanced_nutrition.service.RoleService;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 @Service

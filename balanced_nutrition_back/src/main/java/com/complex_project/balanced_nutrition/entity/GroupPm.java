@@ -1,14 +1,12 @@
 package com.complex_project.balanced_nutrition.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "group_pm", schema = "cp")
 public class GroupPm {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_group_pm", nullable = false)
     private Integer id;
 

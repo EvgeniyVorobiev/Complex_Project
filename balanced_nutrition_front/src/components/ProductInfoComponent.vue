@@ -7,23 +7,24 @@
         <b-breadcrumb-item active style="color: #000;">Продукт</b-breadcrumb-item>
     </b-breadcrumb>
 
-    <div class="col-8" id="dishCard">
+    <b-col cols="10" id="dishCard">
     <b-card
         img-src="https://pbprog.ru/tk/img/tehnokarta/bluda/47_.jpg"
         img-alt="Image"
+        class="productCard"
         img-top>
         <b-card-text class="productTitle"><h3>Продукт</h3></b-card-text>
         <b-card-text class="shelfLife">Срок хранения: </b-card-text>
         <b-card-text class="measure">Единица измерения: </b-card-text>
-        <div class="row">
-            <div class="col-2">Вес продукта</div>
-            <div class="col-3"><b-form-input v-model="text" placeholder="100 г"></b-form-input></div>
-            <div class="col-2"><b-button pill variant="outline-primary">пересчитать</b-button></div>
-        </div>
+        <b-row class="row">
+            <b-col cols="2">Вес продукта</b-col>
+            <b-col cols="3"><b-form-input v-model="text" placeholder="100 г"></b-form-input></b-col>
+            <b-col cols="2"><b-button pill variant="outline-primary">пересчитать</b-button></b-col>
+        </b-row>
         <b-card-text class="dishNutrients"><h5>Пищевая ценность, калорийность и химический состав продукта</h5></b-card-text>
         <b-table hover :items="nutrients"></b-table>
     </b-card>
-    </div>
+    </b-col>
 
 </body>
 </template>
@@ -44,6 +45,9 @@
 </script>
 
 <style scoped>
+.productCard{
+    padding-bottom: 100px;
+}
 .productTitle{
     text-align: center;
 }

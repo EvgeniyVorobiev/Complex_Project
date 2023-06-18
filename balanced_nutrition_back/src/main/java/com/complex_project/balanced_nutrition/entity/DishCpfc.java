@@ -8,6 +8,7 @@ import org.hibernate.annotations.OnDeleteAction;
 @Table(name = "dish_cpfc", schema = "cp")
 public class DishCpfc {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_dish_cpfc", nullable = false)
     private Integer id;
 

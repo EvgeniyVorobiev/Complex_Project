@@ -7,17 +7,17 @@
         <b-breadcrumb-item active style="color: #000;">Блюдо</b-breadcrumb-item>
     </b-breadcrumb>
 
-    <div class="col-8" id="dishCard">
+    <b-col cols="10" id="dishCard">
     <b-card
         img-src="https://pbprog.ru/tk/img/tehnokarta/bluda/50_.jpg"
         img-alt="Image"
         img-top>
         <b-card-text class="dishTitle"><h3>Блюдо</h3></b-card-text>
-        <div class="row">
-            <div class="col-2">Вес блюда</div>
-            <div class="col-3"><b-form-input v-model="text" placeholder="100 г"></b-form-input></div>
-            <div class="col-2"><b-button pill variant="outline-primary">пересчитать</b-button></div>
-        </div>
+        <b-row class="row">
+            <b-col cols="2">Вес блюда</b-col>
+            <b-col cols="3"><b-form-input v-model="text" placeholder="100 г"></b-form-input></b-col>
+            <b-col cols="2"><b-button pill variant="outline-primary">пересчитать</b-button></b-col>
+        </b-row>
         <b-card-text>Вид обработки: </b-card-text>
         <b-card-text class="dishProducts"><h5>Рецептура (раскладка продуктов) на 100 грамм нетто блюда</h5></b-card-text>
         <b-table hover :items="products">
@@ -32,7 +32,7 @@
         <b-card-text class="dishNutrients"><h5>Пищевая ценность, калорийность и химический состав блюда</h5></b-card-text>
         <b-table hover :items="nutrients"></b-table>
     </b-card>
-    </div>
+    </b-col>
 
     <!-- <div class="container">
         <div class="row">
@@ -78,6 +78,7 @@
     padding-top: 30px;
     margin-left: auto;
     margin-right: auto;
+    padding-bottom: 100px;
 }
 .dishProducts{
     padding-top: 40px;
