@@ -5,6 +5,8 @@ import com.complex_project.balanced_nutrition.entity.UserCp;
 public interface UserService {
     UserCp createUser(UserCp user, short id_role);
     UserCp getUserByLoginAndPassword(String login, String password);
-    UserCp getUserById(Integer id);
+
+    UserCp getUserById(int id);
+
     UserCp getUserByLogin(String login);
 }

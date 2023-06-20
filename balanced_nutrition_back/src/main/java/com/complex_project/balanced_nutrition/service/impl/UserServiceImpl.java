@@ -1,14 +1,9 @@
 package com.complex_project.balanced_nutrition.service.impl;
 
-import com.complex_project.balanced_nutrition.controller.RoleController;
-import com.complex_project.balanced_nutrition.dto.RoleDto;
-import com.complex_project.balanced_nutrition.entity.Role;
 import com.complex_project.balanced_nutrition.entity.UserCp;
 import com.complex_project.balanced_nutrition.repository.RoleRepository;
 import com.complex_project.balanced_nutrition.repository.UserCpRepository;
-import com.complex_project.balanced_nutrition.service.RoleService;
 import com.complex_project.balanced_nutrition.service.UserService;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
@@ -56,17 +51,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserCp getUserByLoginAndPassword(String login, String password) {
 
-        return null;
+        return userRepository.getUserCpByLoginOrEmailAndPassword(login, password);
     }
 
     @Override
-    public UserCp getUserById(Integer id) {
-        UserCp user = userRepository.findById(id).orElse(null);
-        if (user != null){
-            ModelMapper modelMapper = new ModelMapper();
-            return modelMapper.map(user, UserCp.class);
-        }
-        return null;
+    public UserCp getUserById(int id) {
+        return userRepository.findById(id).get();
     }
 
     @Override

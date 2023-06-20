@@ -17,18 +17,20 @@
 </template>
 
 <script>
-
+import App from '../App.vue'
     export default{
         data(){
         return {
-            name: 'NoLoginMainComponent'
+            name: 'NoLoginMainComponent',
+            authorisedUser: App.authorisedUser,
         }
         
     },
     methods:{
         showLoginModal() {
-                this.$refs['login-modal'].show()
-            }
+                console.log(this.authorisedUser)
+            },
+        
     }
 
     }

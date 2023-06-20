@@ -1,9 +1,9 @@
 <template>
 <body>
     <b-breadcrumb>
-        <b-breadcrumb-item active><a href="/" id="to">Главная</a></b-breadcrumb-item>
-        <b-breadcrumb-item active><a id="to" href='/techCards'>Технологические карты</a></b-breadcrumb-item>
-        <b-breadcrumb-item active><a id="to" href='/dishSetCards'>788 Блюд для ДОО, Москва</a></b-breadcrumb-item>
+        <b-breadcrumb-item active><router-link to="/" id="to">Главная</router-link></b-breadcrumb-item>
+        <b-breadcrumb-item active><router-link to="/techCards" id="to">Технологические карты</router-link></b-breadcrumb-item>
+        <b-breadcrumb-item active><router-link to="/dishSetCards" id="to">788 Блюд для ДОО, Москва</router-link></b-breadcrumb-item>
         <b-breadcrumb-item active style="color: #000;">Блюдо</b-breadcrumb-item>
     </b-breadcrumb>
 
@@ -54,7 +54,7 @@
             return{
                 name: 'dishInfo',
                 products: [
-                    {Продукт: '<a class="product" href="/productInfo">продукт</a>', 'Брутто, г': '100', 'Нетто, г': '100'}
+                    {Продукт: '<router-link to="/productInfo" class="product">продукт</router-link>', 'Брутто, г': '100', 'Нетто, г': '100'}
                 ],
                 nutrients: [
                     {'Показатель': 'Белки, г', 'Содержание питательных веществ на 100 грамм блюда': 10},
@@ -78,7 +78,6 @@
     padding-top: 30px;
     margin-left: auto;
     margin-right: auto;
-    padding-bottom: 100px;
 }
 .dishProducts{
     padding-top: 40px;

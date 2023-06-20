@@ -1,7 +1,7 @@
 <template>
 <body>
     <b-breadcrumb>
-        <b-breadcrumb-item active><a href="/" id="toMain">Главная</a></b-breadcrumb-item>
+        <b-breadcrumb-item active><router-link to="/" id="toMain">Главная</router-link></b-breadcrumb-item>
         <b-breadcrumb-item active style="color: black;">Технологические карты</b-breadcrumb-item>
     </b-breadcrumb>
     <h3>Технологические карты блюд</h3>
@@ -25,7 +25,7 @@
             </b-row>
             <b-row class="row gy-5" id="dishes">
                 <b-col cols="3">
-                    <a class="dish" href="/dishInfo">
+                    <router-link to="/dishInfo" class="dish">
                         <b-card
                         img-src="https://pbprog.ru/tk/img/tehnokarta/bluda/1.jpg"
                         img-alt="Image"
@@ -33,7 +33,7 @@
                         id="dish">
                             <div><b-card-text class="dishCardsTitle">Блюдо</b-card-text></div>
                         </b-card>
-                    </a>
+                    </router-link>
                 </b-col>
             </b-row>
         </b-container>
@@ -44,10 +44,10 @@
         <b-row class="row gy-5">
             <b-col cols="4">
                 <div class="p-3" id="dishCardSet">
-                    <a class="cardSet" href="/dishSetCards">    
+                    <router-link to="/dishSetCards" class="cardSet">    
                         <p class="dishNumber">788</p>
                         <div><p class="dishCardsTitle">Блюд для ДОО, Москва</p></div>
-                    </a>
+                    </router-link>
                 </div>
             </b-col>
             <b-col cols="4">

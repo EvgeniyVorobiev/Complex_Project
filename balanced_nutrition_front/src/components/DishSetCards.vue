@@ -1,8 +1,8 @@
 <template>
 <body>
     <b-breadcrumb>
-        <b-breadcrumb-item active><a href="/" id="toMain">Главная</a></b-breadcrumb-item>
-        <b-breadcrumb-item active><a id="toTechCards" href='/techCards'>Технологические карты</a></b-breadcrumb-item>
+        <b-breadcrumb-item active><router-link to="/" id="toMain">Главная</router-link></b-breadcrumb-item>
+        <b-breadcrumb-item active><router-link to='/techCards' id="toTechCards">Технологические карты</router-link></b-breadcrumb-item>
         <b-breadcrumb-item active style="color: #000;">788 Блюд для ДОО, Москва</b-breadcrumb-item>
     </b-breadcrumb>
     <h3>788 Блюд для ДОО, Москва</h3>

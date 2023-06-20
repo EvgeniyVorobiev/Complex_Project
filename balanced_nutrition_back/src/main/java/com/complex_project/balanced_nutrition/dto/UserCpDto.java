@@ -1,5 +1,7 @@
 package com.complex_project.balanced_nutrition.dto;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -12,6 +14,7 @@ public class UserCpDto implements Serializable {
     private final String password;
     private final String email;
     private final RoleDto idRole;
+
 
     public UserCpDto(Integer id, String login, String password, String email, RoleDto idRole) {
         this.id = id;

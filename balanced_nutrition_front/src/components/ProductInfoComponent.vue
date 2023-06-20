@@ -1,9 +1,9 @@
 <template>
 <body>
     <b-breadcrumb>
-        <b-breadcrumb-item active><a href="/" id="to">Главная</a></b-breadcrumb-item>
-        <b-breadcrumb-item active><a id="to" href='/techCards'>Технологические карты</a></b-breadcrumb-item>
-        <b-breadcrumb-item active><a id="to" href=''>Продукты</a></b-breadcrumb-item>
+        <b-breadcrumb-item active><router-link to="/" id="to">Главная</router-link></b-breadcrumb-item>
+        <b-breadcrumb-item active><router-link to='/techCards' id="to">Технологические карты</router-link></b-breadcrumb-item>
+        <b-breadcrumb-item active><router-link to='' id="to">Продукты</router-link></b-breadcrumb-item>
         <b-breadcrumb-item active style="color: #000;">Продукт</b-breadcrumb-item>
     </b-breadcrumb>
 

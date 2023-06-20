@@ -5,7 +5,7 @@
             <nav>
                 <b-container class="container">
                     <b-row class="row">
-                        <b-col cols="4"><a href="/" id="programName">Детский сад. Питание</a></b-col>
+                        <b-col cols="4"><router-link to="/" id="programName">Детский сад. Питание</router-link></b-col>
 
 
                         <b-col cols="2"><b-dropdown  variant="link" no-caret toggle-class="text-decoration-none">
@@ -18,22 +18,17 @@
                         </b-dropdown></b-col>
 
 
-                        <b-col cols="4"><a href="/techCards"  id="techCards">Технологические карты</a></b-col>
+                        <b-col cols="4"><router-link to="/techCards"  id="techCards">Технологические карты</router-link></b-col>
                         <!-- <div class="col-1"><a href="/tariffs" id="tariffs">Тариф</a></div> -->
-
-
-                        <b-col cols="2"><a id="loginButton" @click="showLoginModal">Вход <b-icon icon="person"></b-icon></a></b-col>
+                        <b-col cols="2" v-if="loginVisability"><a id="loginButton" @click="showLoginModal">Вход <b-icon icon="person"></b-icon></a></b-col>
                         
-                        
-                        <!-- <b-col cols="2"><b-dropdown  variant="link" no-caret toggle-class="text-decoration-none">
+                        <b-col cols="2" v-if="userVisability"><b-dropdown  variant="link" no-caret toggle-class="text-decoration-none">
                             <template #button-content>
-                            <p style="text-decoration: none; color: black
-                            ; margin-top: -5px;"><a id="loginButton">Evgeniy <b-icon icon="person"></b-icon></a></p>
+                            <p style="text-decoration: none;
+                        color: black; margin-top: -5px;" class="menuCreateButton">{{authorisedUser.login}} <b-icon icon="person"></b-icon></p>
                             </template>
-                            <b-dropdown-item>Выход</b-dropdown-item>
-                        </b-dropdown></b-col> -->
-
-
+                            <b-dropdown-item @click="outUser" href="/">Выход</b-dropdown-item>
+                        </b-dropdown></b-col>
 
                         <b-modal ref="menu-creation" hide-footer hide-header>
                             <b-container class="container" id="loginForm">
@@ -53,8 +48,8 @@
                                     </b-col>
 
                                     <b-col cols="10">
-                                        <b-form-input v-model="groupNameCr" type="text" id="group"
-                                         placeholder="Группа" value=""></b-form-input>
+                                        <b-form-select v-model="groupNameCr" :options="groups" type="text" id="group"
+                                         placeholder="Группа" value=""></b-form-select>
                                     </b-col>
                                     <b-col cols="10">
                                         <b-form-datepicker v-model="beginDateCr" id="datepicker"
@@ -75,7 +70,7 @@
                             <b-container class="container" id="loginForm">
                                 <b-row align-h="center" class="row">
                                     <b-col cols="11">
-                                <h3>Вход в личный кабинет</h3>
+                                <h3>Авторизация</h3>
                             </b-col>
                             <b-col cols="1" id="closeDiv">
                                     <b-icon class="close" icon="x-lg" @click="hideLoginModal"></b-icon>
@@ -87,12 +82,12 @@
                             </b-col>
 
                             <b-col cols="10">
-                                <b-form-input type="text" v-model="passwordLog" class="password" id="password" placeholder="Пароль"
+                                <b-form-input type="password" v-model="passwordLog" class="password" id="password" placeholder="Пароль"
                                 name="USER_PASSWORD" value=""></b-form-input>
                             </b-col>
 
                             <b-col cols="7">
-                                <b-button class="loginButton" block pill variant="primary" href="/main">Войти</b-button>
+                                <b-button class="loginButton" block pill variant="primary" @click="authUser">Войти</b-button>
                             </b-col>
 
                             <b-col cols="10">
@@ -153,7 +148,6 @@
 <script>
 import { RouterView } from 'vue-router'
 import axios from 'axios';
-//import { LoginModalComponent } from '@/components/LoginModalComponent.vue'
 class UserCp{
     constructor(login, password, email, role_id){
         this.login = login;
@@ -161,26 +155,18 @@ class UserCp{
         this.email = email;
         this.role_id = role_id;
         }
-    //constructor(){
-
-    //}    
 }
-
-// class Role{
-//     constructor(id_role, name){
-//         this.id_role = id_role;
-//         this.name = name;}
-//     }
-//let FormRegistration = document.querySelector("#registerForm");
-//FormRegistration.addEventListener()
+// var authorisedUser;
 
 
     export default {
             name: "App",
-    
+            
     data (){
         return {
-
+            authorisedUser: null,
+            userVisability: false,
+            loginVisability: true,
         };
     },
     methods: {
@@ -204,6 +190,18 @@ class UserCp{
                 this.$refs['register-modal'].hide(),
                 this.$refs['login-modal'].show()
             },
+            hideUserVisability(){
+                this.userVisability = false
+            },
+            showUserVisability(){
+                this.userVisability = true
+            },
+            hideLoginVisability(){
+                this.loginVisability = false
+            },
+            showLoginVisability(){
+                this.loginVisability = true
+            },
             makeToast(variant = null, text) {
                 this.$bvToast.toast(text, {
                 title: `Детский сад. Питание`,
@@ -216,31 +214,45 @@ class UserCp{
             async register(user){
                 try {
                     const response = await axios.post('http://localhost:8080/user/register', user);
-                    //this.roleName = response.data.name;
                     return response;
                 } 
                 catch (error) {
                     console.log(error);
                 }
             },
-            async findUserBylogin(login){
-                const response = await axios.get('http://localhost:8080/user/getByLogin/' + login)
-                return response;
+            outUser(){
+                this.authorisedUser = null;
+                this.hideUserVisability();
+                this.showLoginVisability();
             },
-            // async findRoleById(id_role){
-            //     const response = await axios.get('http://localhost:8080/role/' + id_role);
-            //     this.role = new Role(response.id, response.name);
-            // },
-
+            authUser(){
+                if (this.loginLog != null && this.passwordLog != null){
+                    axios.get('http://localhost:8080/user/getByLoginAndPassword/' + this.loginLog + '/' + this.passwordLog)
+                    .then(response => {
+                        this.authorisedUser = response.data;
+                        this.hideLoginModal();
+                        console.log(this.authorisedUser);
+                        this.makeToast('success', 'Авторизация прошла успешно');
+                        this.hideLoginVisability();
+                        this.showUserVisability();
+                    })
+                    .catch(() => {
+                        this.makeToast('danger', 'Неверно указан логин или пароль')
+                    })
+                }
+                else{
+                    this.makeToast('danger', 'Пожалуйста, заполните все поля');
+                }
+            },
             registerUser(){
-                
-                // this.user.login = this.loginInput;
-                // this.user.password = this.password1Input;
-                // this.user.email = this.emailInput;
-                // this.findRoleById(2);
-                try{
-                if (this.loginInputReg != null && this.emailInput != null && this.password1Input != null && this.password2Input != null ){
-                    if (this.findUserBylogin(this.loginInputReg) == null){
+                var userIsAdded;
+                const response = axios.get('http://localhost:8080/user/getByLogin/' + this.loginInputReg)
+                    .then(() => {
+                        this.makeToast('danger', 'Пользователь с таким логином уже есть');
+                    })
+                    .catch(() => {
+                        if (this.loginInputReg != null && this.emailInput != null && this.password1Input != null && this.password2Input != null ){
+                        
                         if (this.password1Input == this.password2Input){
                             this.register(new UserCp(this.loginInputReg, this.password1Input, this.emailInput, 2));
                             this.hideRegisterModal();
@@ -253,19 +265,15 @@ class UserCp{
                         else {
                             this.makeToast('danger', 'Пароли не совпадают');
                         }
+                        
                     }
                     else{
-                        this.makeToast('danger', 'Пользователь с таким логином уже есть');
+                        this.makeToast('danger', 'Проверьте правильность введенных данных');
                     }
+                    });
+                console.log(userIsAdded);
+                console.log(response);
                 }
-                else{
-                    this.makeToast('danger', 'Проверьте правильность введенных данных');
-                }
-                }
-                catch{
-                    this.makeToast('danger', 'Произошла ошибка при регистрации');
-                }
-            }
     },
     components: { RouterView, },
 }
