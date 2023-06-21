@@ -181,7 +181,9 @@
         </header>
         <div id="content">
             <div class="container">
-                <RouterView :authorisedUser1="authorisedUser"></RouterView>
+                <RouterView 
+                :authorisedUser="authorisedUser"
+                :userIsAuthorised="userIsAuthorised"></RouterView>
             </div>
         </div> 
     </div>

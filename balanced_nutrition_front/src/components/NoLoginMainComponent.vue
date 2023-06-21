@@ -26,7 +26,8 @@
         
     },
     props:{
-        authorisedUser1: null,
+        authorisedUser: null,
+        userIsAuthorised: null,
     },
     methods:{
         showLoginModal() {

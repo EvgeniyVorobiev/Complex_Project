@@ -61,9 +61,9 @@
                 </div>
             </b-col>
             
-            <b-col cols="4">
+            <b-col cols="4" v-if="userIsAuthorised">
                 <div class="p-3" id="dishCardSet">
-                    <a class="cardSet" href="/dishSetCards">    
+                    <a class="cardSet" @click="dishCollectionCreation">    
                         <p class="dishNumber"><b-icon-plus-lg style=""></b-icon-plus-lg></p>
                         <div><p class="dishCardsTitle">Создать сборник блюд</p></div>
                     </a>
@@ -71,6 +71,33 @@
             </b-col>
         </b-row>
     </b-container>
+    </div>
+    <div class="modal">
+        <b-modal ref="dishCollection-Creation" hide-footer hide-header>
+                            <b-container class="container" id="loginForm">
+                                <b-row align-h="center" class="row">
+                                        <b-col cols="11">
+                                            <h3>Создание сборника блюд</h3>
+                                        </b-col>
+                                    
+                                        <b-col cols="1" id="closeDiv">
+                                        <b-icon class="close" icon="x-lg" @click="hideMenuOpen"></b-icon>
+                                        </b-col>
+
+
+                                    <b-col cols="10">
+                                        <b-form-input v-model="menuNameOpen" type="text" id="menuName"
+                                         placeholder="Введите назваие сборника блюд" value=""></b-form-input>
+                                    </b-col>
+
+
+                                    <b-col cols="8">
+                                        <b-button id="dishCollectionCreateButton" block pill variant="primary" @click="createDishCollection">Создать</b-button>
+                                    </b-col>
+                                </b-row>
+                            </b-container>
+                        </b-modal>
+
     </div>
 </body>
 </template>
@@ -89,6 +116,10 @@
             
         }
         
+    },
+    props:{
+        authorisedUser: null,
+        userIsAuthorised: null,
     },
     methods:{
 
@@ -126,7 +157,20 @@
     padding-bottom: 100px;
     
 }
-
+#closeDiv{
+    position: absolute;
+    left: 105%;
+}
+:hover .close{
+    color:white;
+}
+.close{
+    top: -2%;
+    cursor: pointer;
+    width: 40px; 
+    height: 40px; 
+    color:whitesmoke;
+}
 
 #dishCardSet{
     box-shadow: 0 5px 20px 0 rgba(0,0,0,0.2);
