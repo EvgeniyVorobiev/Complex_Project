@@ -6,6 +6,8 @@ import com.complex_project.balanced_nutrition.repository.DishCollectionRepositor
 import com.complex_project.balanced_nutrition.service.DishCollectionService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class DishCollectionServiceImpl implements DishCollectionService {
     private final DishCollectionRepository dishCollectionRepository;
@@ -22,5 +24,15 @@ public class DishCollectionServiceImpl implements DishCollectionService {
         dishCollection.setIdUser(id_user);
 
         return dishCollectionRepository.save(dishCollection);
+    }
+
+    @Override
+    public List<DishCollection> getAllDishCollections() {
+        return dishCollectionRepository.getAllDishCollections();
+    }
+
+    @Override
+    public int numberOfDishes(Integer id) {
+        return dishCollectionRepository.numberOfDishes(id);
     }
 }
