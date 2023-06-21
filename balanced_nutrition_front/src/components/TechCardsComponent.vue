@@ -44,31 +44,26 @@
     <div class="dishCards">
     <b-container class="container">
         <b-row class="row gy-5">
-            <b-col cols="4">
+            
+            <b-col cols="4" v-for="dishCollection in this.dishCollections" :key="dishCollection.dishCollection.id">
                 <div class="p-3" id="dishCardSet">
                     <router-link to="/dishSetCards" class="cardSet">    
-                        <p class="dishNumber">788</p>
-                        <div><p class="dishCardsTitle">Блюд для ДОО, Москва</p></div>
+                        <p class="dishNumber">{{dishCollection.numberOfDishes}}</p>
+                        <div><p class="dishCardsTitle">{{dishCollection.dishCollection.name}}</p></div>
                     </router-link>
                 </div>
             </b-col>
-            <b-col cols="4">
-                <div class="p-3" id="dishCardSet">
-                    <a class="cardSet" href="/dishSetCards">    
-                        <p class="dishNumber">788</p>
-                        <div><p class="dishCardsTitle">Блюд для ДОО, Москва</p></div>
-                    </a>
-                </div>
-            </b-col>
+
             
             <b-col cols="4" v-if="userIsAuthorised">
                 <div class="p-3" id="dishCardSet">
-                    <a class="cardSet" @click="dishCollectionCreation">    
+                    <a class="cardSet" @click="showDishCollectionCreation">    
                         <p class="dishNumber"><b-icon-plus-lg style=""></b-icon-plus-lg></p>
                         <div><p class="dishCardsTitle">Создать сборник блюд</p></div>
                     </a>
                 </div>
             </b-col>
+
         </b-row>
     </b-container>
     </div>
@@ -81,13 +76,13 @@
                                         </b-col>
                                     
                                         <b-col cols="1" id="closeDiv">
-                                        <b-icon class="close" icon="x-lg" @click="hideMenuOpen"></b-icon>
+                                        <b-icon class="close" icon="x-lg" @click="hideDishCollectionCreation"></b-icon>
                                         </b-col>
 
 
                                     <b-col cols="10">
-                                        <b-form-input v-model="menuNameOpen" type="text" id="menuName"
-                                         placeholder="Введите назваие сборника блюд" value=""></b-form-input>
+                                        <b-form-input v-model="dishCollectionName" type="text" id="dishCollectionName"
+                                         placeholder="Введите название сборника блюд" value=""></b-form-input>
                                     </b-col>
 
 
@@ -103,16 +98,14 @@
 </template>
 
 <script>
+import axios from 'axios';
     export default{
         data(){
         return {
             name: 'TechCardsComponents',
             selectedDishProcessing: null,
-            options: [
-                { value: null, text: 'Не выбран' },
-                { value: 'a', text: 'Варка' },
-                { value: 'b', text: 'Жарка' },
-            ]
+            options: [],
+            dishCollections: [],
             
         }
         
@@ -122,8 +115,58 @@
         userIsAuthorised: null,
     },
     methods:{
-
-    }
+        makeToast(variant = null, text) {
+                this.$bvToast.toast(text, {
+                title: `Детский сад. Питание`,
+                variant: variant,
+                autoHideDelay: 5000,
+                solid: true
+            })
+        },
+        showDishCollectionCreation(){
+            this.$refs['dishCollection-Creation'].show();
+        },
+        hideDishCollectionCreation(){
+            this.$refs['dishCollection-Creation'].hide();
+        },
+        createDishCollection(){
+            if (this.dishCollectionName != null){
+                console.log(this.dishCollectionName);
+                axios.post('http://localhost:8080/dishCollection/create', {'name':this.dishCollectionName, 'idUser': this.authorisedUser})
+                .catch();
+                this.hideDishCollectionCreation();
+                this.makeToast('success', 'Сборник блюд ' +this.dishCollectionName + ' создан');
+                this.$router.push('Main');
+                this.$router.push('techCards');
+            }
+            else{
+                this.makeToast('danger', 'Пожалуйста, укажите название для сборника блюд');
+            }
+        },
+        getAllDishCollections(){
+            this.dishCollections = [];
+            var dishNumber = null;
+            axios.get('http://localhost:8080/dishCollection/AllDishCollections')
+            .then(response => {
+                response.data.forEach(responseElement => {
+                    //console.log(responseElement);
+                    axios.get('http://localhost:8080/dishCollection/numberOfDishes/' + responseElement.id)
+                    .then(response2 => {
+                        //console.log(response2.data);
+                        dishNumber = response2.data;
+                        this.dishCollections.push({dishCollection: responseElement, numberOfDishes:  dishNumber});  
+                    });
+                })
+                console.log(this.dishCollections);    
+            })
+            .catch(() =>{
+                this.makeToast('danger', 'Произошла ошибка при загрузке сборников блюд')
+            })
+        }
+    },
+    mounted() {
+        this.getAllDishCollections()
+    },
 
     }
 </script>
@@ -176,8 +219,7 @@
     box-shadow: 0 5px 20px 0 rgba(0,0,0,0.2);
     border-radius: 5px;
     margin-top: 30px;
-    /* column-width: auto;
-    height: auto; */
+    cursor: pointer;
 }
 .cardSet{
     text-decoration: none;
@@ -199,5 +241,12 @@
     font-size: 15px;
     font-weight:350;
     color: black;
+}
+
+#dishCollectionName{
+    margin-top:30px;
+}
+#dishCollectionCreateButton{
+    margin-top:40px;
 }
 </style>

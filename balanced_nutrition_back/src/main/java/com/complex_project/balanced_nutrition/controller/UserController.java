@@ -26,7 +26,7 @@ public class UserController {
     private final UserCpRepository userCpRepository;
 
     @PostMapping("/register")
-    public ResponseEntity<UserCp> registerUser(@RequestBody(  ) UserCp user){
+    public ResponseEntity<UserCp> registerUser(@RequestBody() UserCp user){
         UserCp createdUser = userService.createUser(user, (short) 2);
         return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
     }
