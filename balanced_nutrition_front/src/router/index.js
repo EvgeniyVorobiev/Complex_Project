@@ -12,13 +12,13 @@ import ProductInfoComponent from '../components/ProductInfoComponent.vue'
 Vue.use(VueRouter)
 
 const routes = [
-  { path: '/', name: 'Main', component: MainNoLoginView },
-  { path: '/techCards', name: 'techCards', component: TechCardsComponent },
-  { path: '/dishSetCards', name: 'dishSetCards', component: DishSetCards },
-  { path: '/tariffs', name: 'tariffs', component: TariffsComponent },
-  { path: '/main', name: 'main', component: MainComponent},
-  { path: '/dishInfo', name: 'dishInfo', component: DishInfoComponent},
-  { path: '/productInfo', name: 'productInfo', component: ProductInfoComponent}
+  { path: '/', name: 'Main', component: MainNoLoginView, props: true },
+  { path: '/techCards', name: 'techCards', component: TechCardsComponent, props: true },
+  { path: '/dishSetCards', name: 'dishSetCards', component: DishSetCards, props: true },
+  { path: '/tariffs', name: 'tariffs', component: TariffsComponent, props: true },
+  { path: '/main', name: 'main', component: MainComponent, props: true},
+  { path: '/dishInfo', name: 'dishInfo', component: DishInfoComponent, props: true},
+  { path: '/productInfo', name: 'productInfo', component: ProductInfoComponent, props: true}
   // {
   //   path: '/about',
   //   name: 'about',

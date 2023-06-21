@@ -20,8 +20,10 @@
                 <b-col cols="3"><b-form-select class="form-select" v-model="selectedDishProcessing" :options="options"></b-form-select></b-col>
                 <b-col cols="2" style="text-align: center;">Вес блюда от </b-col>
                 <b-col cols="1"><b-form-input v-model="text"></b-form-input></b-col>
+                <b-col cols="1"><p> г.</p></b-col>
                 <b-col cols="1" style="text-align: center;">до</b-col>
                 <b-col cols="1"><b-form-input v-model="text"></b-form-input></b-col>
+                <b-col cols="1"><p> г.</p></b-col>
             </b-row>
             <b-row class="row gy-5" id="dishes">
                 <b-col cols="3">

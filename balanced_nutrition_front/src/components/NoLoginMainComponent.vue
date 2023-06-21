@@ -17,14 +17,16 @@
 </template>
 
 <script>
-import App from '../App.vue'
+//import App from '../App.vue'
     export default{
         data(){
         return {
             name: 'NoLoginMainComponent',
-            authorisedUser: App.authorisedUser,
         }
         
+    },
+    props:{
+        authorisedUser1: null,
     },
     methods:{
         showLoginModal() {

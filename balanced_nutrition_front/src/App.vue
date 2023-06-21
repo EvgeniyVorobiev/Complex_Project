@@ -14,7 +14,7 @@
                         color: black; margin-top: -5px;" class="menuCreateButton">Составление меню</p>
                             </template>
                             <b-dropdown-item @click="showMenuCreation">Создать меню</b-dropdown-item>
-                            <b-dropdown-item >Открыть меню</b-dropdown-item>
+                            <b-dropdown-item @click="showMenuOpen">Открыть меню</b-dropdown-item>
                         </b-dropdown></b-col>
 
 
@@ -48,19 +48,62 @@
                                     </b-col>
 
                                     <b-col cols="10">
-                                        <b-form-select v-model="groupNameCr" :options="groups" type="text" id="group"
-                                         placeholder="Группа" value=""></b-form-select>
+                                        <b-form-select v-model="selectedGroupNameCr" :options="groups"
+                                         id="groupName">
+                                            <template #first>
+                                                <b-form-select-option :value="null" disabled>Выберите группу</b-form-select-option>
+                                            </template>
+                                                <!-- v-for="group in groups" -->
+                                                <!-- <b-form-select-option :value="group">group.text</b-form-select-option> -->
+                                        </b-form-select>
                                     </b-col>
                                     <b-col cols="10">
-                                        <b-form-datepicker v-model="beginDateCr" id="datepicker"
-                                         placeholder="Дата начала" value="" class="mb-2"></b-form-datepicker>
+                                        <b-form-datepicker v-model="beginDateCr" class="menuDatepicker"
+                                         placeholder="Дата начала" value=""></b-form-datepicker>
                                     </b-col>
                                     <b-col cols="10">
                                         <b-form-input v-model="daysNumberCr" type="text" id="daysNumber"
                                          placeholder="Количество дней" value=""></b-form-input>
                                     </b-col>
+
+                                    <b-col cols="10">
+                                        <b-form-group label="Приёмы пищи:" class="mealCollection">
+                                            <b-form-checkbox-group
+                                            id="checkbox-group-1"
+                                            v-model="selectedMeal"
+                                            :options="meals"
+                                            name="mealsForm"
+                                            ></b-form-checkbox-group>
+                                        </b-form-group>
+                                    </b-col>
+
                                     <b-col cols="8">
-                                        <b-button id="button" block pill variant="primary">Создать</b-button>
+                                        <b-button id="mCrButton" block pill variant="primary" @click="createMenu">Создать</b-button>
+                                    </b-col>
+                                </b-row>
+                            </b-container>
+                        </b-modal>
+
+                        <b-modal ref="menu-open" hide-footer hide-header>
+                            <b-container class="container" id="loginForm">
+                                <b-row align-h="center" class="row">
+                                        <b-col cols="11">
+                                            <h3>Открыть меню</h3>
+                                        </b-col>
+                                    
+                                        <b-col cols="1" id="closeDiv">
+                                        <b-icon class="close" icon="x-lg" @click="hideMenuOpen"></b-icon>
+                                        </b-col>
+
+
+                                    <b-col cols="10">
+                                        <b-form-input v-model="menuNameOpen" type="text" id="menuName"
+                                         placeholder="Введите название меню" value=""></b-form-input>
+                                    </b-col>
+
+
+                                    <b-col cols="8">
+                                        <b-button id="mOpenButton" block pill variant="primary" @click="openMenu">Открыть</b-button>
                                     </b-col>
                                 </b-row>
                             </b-container>
@@ -138,7 +181,7 @@
         </header>
         <div id="content">
             <div class="container">
-                <RouterView></RouterView>
+                <RouterView :authorisedUser1="authorisedUser"></RouterView>
             </div>
         </div> 
     </div>
@@ -146,8 +189,18 @@
 </template>
 
 <script>
-import { RouterView } from 'vue-router'
+//import { RouterView } from 'vue-router'
 import axios from 'axios';
+
+// import NoLoginMainComponent from '../src/components/NoLoginMainComponent'
+// import MainComponent from '../src/components/MainComponent'
+// import TechCardsComponent from '../src/components/TechCardsComponent'
+// import DishSetCards from '../src/components/DishSetCards'
+// import DishInfoComponent from '../src/components/DishInfoComponent'
+// import ProductInfoComponent from '../src/components/ProductInfoComponent'
+
+
+
 class UserCp{
     constructor(login, password, email, role_id){
         this.login = login;
@@ -165,16 +218,64 @@ class UserCp{
     data (){
         return {
             authorisedUser: null,
+            userIsAuthorised: false,
             userVisability: false,
             loginVisability: true,
+            selectedGroupNameCr: null,
+            groups: [],
+            meals: [],
         };
     },
     methods: {
         showMenuCreation(){
-                this.$refs['menu-creation'].show()
+                if (this.userIsAuthorised == true){
+                    this.$refs['menu-creation'].show()
+                    this.groups = [];
+                    this.meals = [];
+                    axios.get('http://localhost:8080/group/getAllGroups')
+                    .then(response => {
+                        response.data.forEach(group => {
+                            this.groups.push({value: group, text: group.name});
+                        });
+                    })
+                    .catch(() => {
+                        this.makeToast('danger', 'Произошла ошибка при заполнении списка групп')
+                    });
+                    axios.get('http://localhost:8080/mealCollection/getAllMeals')
+                    .then(response => {
+                        response.data.forEach(meal => {
+                            this.meals.push({value: meal, text: meal.name});
+                        });
+                    })
+                    .catch(() => {
+                        this.makeToast('danger', 'Произошла ошибка при заполнении списка приёмов пищи')
+                    });
+
+                    
+                }
+                else{
+                    this.showLoginModal();
+                    this.makeToast('danger', 'Для создания меню необходимо войти в аккаунт')
+                }
+            },
+            createMenu(){
+                this.hideMenuCreation();
+                this.$router.push('main');
             },
             hideMenuCreation(){
                 this.$refs['menu-creation'].hide()
+            },
+            showMenuOpen(){
+                if (this.userIsAuthorised == true){
+                    this.$refs['menu-open'].show()
+                }
+                else{
+                    this.showLoginModal();
+                    this.makeToast('danger', 'Для открытия меню необходимо войти в аккаунт')
+                }
+            },
+            hideMenuOpen(){
+                this.$refs['menu-open'].hide()
             },
             showLoginModal() {
                 this.$refs['login-modal'].show()
@@ -222,6 +323,7 @@ class UserCp{
             },
             outUser(){
                 this.authorisedUser = null;
+                this.userIsAuthorised = false;
                 this.hideUserVisability();
                 this.showLoginVisability();
             },
@@ -235,6 +337,7 @@ class UserCp{
                         this.makeToast('success', 'Авторизация прошла успешно');
                         this.hideLoginVisability();
                         this.showUserVisability();
+                        this.userIsAuthorised = true;
                     })
                     .catch(() => {
                         this.makeToast('danger', 'Неверно указан логин или пароль')
@@ -275,7 +378,15 @@ class UserCp{
                 console.log(response);
                 }
     },
-    components: { RouterView, },
+    components: { 
+        //RouterView,
+        // NoLoginMainComponent,
+        // MainComponent,
+        // TechCardsComponent,
+        // DishSetCards,
+        // DishInfoComponent,
+        // ProductInfoComponent,
+     },
 }
 </script>
 
@@ -326,6 +437,28 @@ header {
     width: 40px; 
     height: 40px; 
     color:whitesmoke;
+}
+#menuName{
+    margin-top:30px;
+}
+#groupName{
+    margin-top:30px;
+}
+.menuDatepicker{
+    margin-top:30px;
+}
+#daysNumber{
+    margin-top:30px;
+}
+.mealCollection{
+    text-align:start;
+    margin-top:30px;
+}
+#mCrButton{
+    margin-top:40px;
+}
+#mOpenButton{
+    margin-top:40px;
 }
 #loginForm{
     text-align: center;
