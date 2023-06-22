@@ -3,7 +3,7 @@
     <b-breadcrumb>
         <b-breadcrumb-item active><router-link to="/" id="to">Главная</router-link></b-breadcrumb-item>
         <b-breadcrumb-item active><router-link to='/techCards' id="to">Технологические карты</router-link></b-breadcrumb-item>
-        <b-breadcrumb-item active><router-link to='' id="to">Продукты</router-link></b-breadcrumb-item>
+        <b-breadcrumb-item active><router-link to='/products' id="to">Продукты</router-link></b-breadcrumb-item>
         <b-breadcrumb-item active style="color: #000;">Продукт</b-breadcrumb-item>
     </b-breadcrumb>
 

@@ -36,4 +36,9 @@ public class RecipeBookServiceImpl implements RecipeBookService {
         return recipeBookRepository.getRecipeBookById(id);
     }
 
+    @Override
+    public List<RecipeBook> getByDishCollection(DishCollection dishCollection) {
+        return recipeBookRepository.getRecipeBookByDishCollection(dishCollection);
+    }
+
 }

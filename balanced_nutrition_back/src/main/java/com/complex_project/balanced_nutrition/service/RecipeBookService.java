@@ -9,4 +9,5 @@ public interface RecipeBookService {
     List<RecipeBook> getAllRecipeBooks();
     RecipeBook createRecipeBook(String name, String imageLink, DishCollection dishCollection);
     RecipeBook getById(Integer id);
+    List<RecipeBook> getByDishCollection(DishCollection dishCollection);
 }

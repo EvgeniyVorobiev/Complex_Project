@@ -1,5 +1,6 @@
 package com.complex_project.balanced_nutrition.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -18,6 +19,7 @@ public class ProductCollection {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_user")
+    @JsonIgnore
     private UserCp idUser;
 
     public Integer getId() {

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="200" prefWidth="320" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.FXMLDocumentController">
+    <children>
+<!--        <Label layoutX="26" layoutY="20" minHeight="16" minWidth="69" text="Добавить группу:" />-->
+<!--        <TextField layoutX="26" layoutY="40" minHeight="16" minWidth="69" fx:id="groupTextFieldForAdd" />-->
+<!--        <Button layoutX="26" layoutY="70" minHeight="16" minWidth="69" onAction="#addButtonAction" text="Добавить" fx:id="addGroup" />-->
+<!--        <Button layoutX="26" layoutY="100" minHeight="16" minWidth="69" onAction="#updateListButtonAction" text="обновить список групп" fx:id="updateListGroupList" />-->
+        <Label layoutX="200" layoutY="120" minHeight="16" minWidth="69" text="Группа:" />
+        <ComboBox layoutX="200" layoutY="140" minHeight="16" minWidth="69" fx:id="groupTextField" />
+<!--        <TextField layoutX="200" layoutY="70" minHeight="16" minWidth="69" fx:id="groupTextFieldForUpdate" />-->
+<!--        <Button layoutX="200" layoutY="100" minHeight="16" minWidth="69" onAction="#updateGroupByName" text="изменить название выбранной группы" fx:id="updateGroup" />-->
+<!--        <Button layoutX="200" layoutY="130" minHeight="16" minWidth="69" onAction="#deleteGroupByName" text="удалить выбранную группу" fx:id="deleteGroup" />-->
+        <Label layoutX="400" layoutY="120" minHeight="16" minWidth="69" text="Введите дату начала планового меню:" />
+        <Label layoutX="400" layoutY="170" minHeight="16" minWidth="69" text="Формат даты: yyyy-mm-dd" />
+        <TextField layoutX="400" layoutY="140" minHeight="16" minWidth="69" fx:id="dateTextField" />
+        <Button layoutX="700" layoutY="140" text="Вывести меню" onAction="#handleButtonAction" fx:id="button" />
+        <Label layoutX="10" layoutY="40" minHeight="16" minWidth="69" fx:id="label" />
+        <!-- Таблица в которую мы будем выводит данные -->
+        <TableView fx:id="tableMenu" layoutX="12.0" layoutY="200.0" prefHeight="524.0" prefWidth="800.0">
+            <columns>
+                <!-- Колонки таблицы -->
+                <TableColumn prefWidth="100.0" text="№ меню" fx:id="planned_menu_id" />
+                <TableColumn prefWidth="150.0" text="Группа" fx:id="group_pm_name" />
+                <TableColumn prefWidth="150.0" text="Дата" fx:id="day_date" />
+                <TableColumn prefWidth="200.0" text="Приём пищи" fx:id="meal_name" />
+                <TableColumn prefWidth="200.0" text="Блюдо" fx:id="dish_name" />
+            </columns>
+        </TableView>
+        <TableView fx:id="tableProducts" layoutX="840.0" layoutY="200.0" prefHeight="524.0" prefWidth="600.0">
+            <columns>
+                <!-- Колонки таблицы -->
+                <TableColumn prefWidth="100.0" text="№ меню" fx:id="id_planned_menu" />
+                <TableColumn prefWidth="150.0" text="Название продукта" fx:id="product_name" />
+                <TableColumn prefWidth="150.0" text="Вес" fx:id="product_weight" />
+                <TableColumn prefWidth="200.0" text="Единица измерения" fx:id="product_measure" />
+            </columns>
+        </TableView>
+    </children>
+</AnchorPane>

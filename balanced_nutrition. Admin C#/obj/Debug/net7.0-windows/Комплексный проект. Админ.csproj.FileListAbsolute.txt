@@ -1,0 +1,21 @@
+C:\Users\79536\OneDrive\Рабочий стол\Комплексный проект. Админ\bin\Debug\net7.0-windows\Комплексный проект. Админ.exe
+C:\Users\79536\OneDrive\Рабочий стол\Комплексный проект. Админ\bin\Debug\net7.0-windows\Комплексный проект. Админ.deps.json
+C:\Users\79536\OneDrive\Рабочий стол\Комплексный проект. Админ\bin\Debug\net7.0-windows\Комплексный проект. Админ.runtimeconfig.json
+C:\Users\79536\OneDrive\Рабочий стол\Комплексный проект. Админ\bin\Debug\net7.0-windows\Комплексный проект. Админ.dll
+C:\Users\79536\OneDrive\Рабочий стол\Комплексный проект. Админ\bin\Debug\net7.0-windows\Комплексный проект. Админ.pdb
+C:\Users\79536\OneDrive\Рабочий стол\Комплексный проект. Админ\bin\Debug\net7.0-windows\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\79536\OneDrive\Рабочий стол\Комплексный проект. Админ\bin\Debug\net7.0-windows\Npgsql.dll
+C:\Users\79536\OneDrive\Рабочий стол\Комплексный проект. Админ\obj\Debug\net7.0-windows\Комплексный проект. Админ.csproj.AssemblyReference.cache
+C:\Users\79536\OneDrive\Рабочий стол\Комплексный проект. Админ\obj\Debug\net7.0-windows\Комплексный_проект._Админ.Form1.resources
+C:\Users\79536\OneDrive\Рабочий стол\Комплексный проект. Админ\obj\Debug\net7.0-windows\Комплексный проект. Админ.csproj.GenerateResource.cache
+C:\Users\79536\OneDrive\Рабочий стол\Комплексный проект. Админ\obj\Debug\net7.0-windows\Комплексный проект. Админ.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\79536\OneDrive\Рабочий стол\Комплексный проект. Админ\obj\Debug\net7.0-windows\Комплексный проект. Админ.AssemblyInfoInputs.cache
+C:\Users\79536\OneDrive\Рабочий стол\Комплексный проект. Админ\obj\Debug\net7.0-windows\Комплексный проект. Админ.AssemblyInfo.cs
+C:\Users\79536\OneDrive\Рабочий стол\Комплексный проект. Админ\obj\Debug\net7.0-windows\Комплексный проект. Админ.csproj.CoreCompileInputs.cache
+C:\Users\79536\OneDrive\Рабочий стол\Комплексный проект. Админ\obj\Debug\net7.0-windows\Комплексный проект. Админ.csproj.CopyComplete
+C:\Users\79536\OneDrive\Рабочий стол\Комплексный проект. Админ\obj\Debug\net7.0-windows\Комплексный проект. Админ.dll
+C:\Users\79536\OneDrive\Рабочий стол\Комплексный проект. Админ\obj\Debug\net7.0-windows\refint\Комплексный проект. Админ.dll
+C:\Users\79536\OneDrive\Рабочий стол\Комплексный проект. Админ\obj\Debug\net7.0-windows\Комплексный проект. Админ.pdb
+C:\Users\79536\OneDrive\Рабочий стол\Комплексный проект. Админ\obj\Debug\net7.0-windows\Комплексный проект. Админ.genruntimeconfig.cache
+C:\Users\79536\OneDrive\Рабочий стол\Комплексный проект. Админ\obj\Debug\net7.0-windows\ref\Комплексный проект. Админ.dll
+C:\Users\79536\OneDrive\Рабочий стол\Комплексный проект. Админ\obj\Debug\net7.0-windows\Комплексный_проект._Админ.GroupInfo.resources

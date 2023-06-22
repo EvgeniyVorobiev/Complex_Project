@@ -38,4 +38,9 @@ public class RecipeBookController {
         RecipeBook recipeBook = recipeBookService.getById(id);
         return  new ResponseEntity<>(recipeBook, HttpStatus.OK);
     }
+    @GetMapping("/getByDishCollection/{id}")
+    public ResponseEntity<List<RecipeBook>> getByDishCollection(@PathVariable Integer id){
+        List<RecipeBook> recipeBooks = recipeBookService.getByDishCollection(dishCollectionService.getById(id));
+        return new ResponseEntity<>(recipeBooks, HttpStatus.OK);
+    }
 }

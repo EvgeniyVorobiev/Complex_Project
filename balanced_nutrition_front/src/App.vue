@@ -18,7 +18,16 @@
                         </b-dropdown></b-col>
 
 
-                        <b-col cols="4"><router-link to="/techCards"  id="techCards">Технологические карты</router-link></b-col>
+                        <b-col cols="4"><b-dropdown  variant="link" no-caret toggle-class="text-decoration-none">
+                            <template #button-content>
+                            <p style="text-decoration: none;
+                        color: black; margin-top: -5px;" id="techCards">Технологические карты</p>
+                            </template>
+                            <b-dropdown-item><router-link to="/techCards" style="text-decoration: none; color: black;">Блюда и сборники блюд</router-link></b-dropdown-item>
+                            <b-dropdown-item><router-link to="/products" style="text-decoration: none; color: black;">Продукты</router-link></b-dropdown-item>
+                        </b-dropdown></b-col>
+
+                        <!-- <b-col cols="4"><router-link to="/techCards"  id="techCards">Технологические карты</router-link></b-col> -->
                         <!-- <div class="col-1"><a href="/tariffs" id="tariffs">Тариф</a></div> -->
                         <b-col cols="2" v-if="loginVisability"><a id="loginButton" @click="showLoginModal">Вход <b-icon icon="person"></b-icon></a></b-col>
                         
@@ -309,7 +318,7 @@ class UserCp{
                 this.$bvToast.toast(text, {
                 title: `Детский сад. Питание`,
                 variant: variant,
-                autoHideDelay: 5000,
+                autoHideDelay: 2500,
                 solid: true
             })
             },

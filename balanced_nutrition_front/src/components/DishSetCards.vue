@@ -135,7 +135,6 @@
         props:{
             authorisedUser: null,
             userIsAuthorised: null,
-            
         },
         methods: {
             imagesLoad(){
@@ -162,9 +161,9 @@
                 console.log(this.selectedImage);
                 this.$refs['slidebar'].hide()
             },
-            getAllRecipeBooks(){
+            getRecipeBooksByDishCollection(){
                 this.recipeBooks = [];
-                axios.get("http://localhost:8080/recipeBook/AllRecipeBooks").
+                axios.get("http://localhost:8080/recipeBook/getByDishCollection/" + this.id).
                 then(response =>{
                     response.data.forEach(responseElement => {
                         this.recipeBooks.push(responseElement);
@@ -195,7 +194,7 @@
                     this.$bvToast.toast(text, {
                     title: `Детский сад. Питание`,
                     variant: variant,
-                    autoHideDelay: 5000,
+                    autoHideDelay: 2500,
                     solid: true
                 })
             },
@@ -212,7 +211,7 @@
     mounted(){
         this.dishCollectionInfoLoad();
         this.imagesLoad();
-        this.getAllRecipeBooks();
+        this.getRecipeBooksByDishCollection();
         }
     }
     </script>

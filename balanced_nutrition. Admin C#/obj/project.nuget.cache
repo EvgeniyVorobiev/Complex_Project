@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "v42LNppNGH30nf3D8hnp66lJ+wPHCpAP/yz0vQT+xsjAJ0X0pjA/xb1rdDQjdxOvKFCRYyiZzPPdsYw+qcoDKw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\79536\\OneDrive\\Рабочий стол\\Комплексный проект. Админ\\Комплексный проект. Админ.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\79536\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\79536\\.nuget\\packages\\npgsql\\7.0.4\\npgsql.7.0.4.nupkg.sha512"
+  ],
+  "logs": []
+}
