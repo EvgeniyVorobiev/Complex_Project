@@ -32,6 +32,11 @@ public class DishCollectionServiceImpl implements DishCollectionService {
     }
 
     @Override
+    public DishCollection getById(Integer id) {
+        return dishCollectionRepository.getById(id);
+    }
+
+    @Override
     public int numberOfDishes(Integer id) {
         return dishCollectionRepository.numberOfDishes(id);
     }

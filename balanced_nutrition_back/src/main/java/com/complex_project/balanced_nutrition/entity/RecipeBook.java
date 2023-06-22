@@ -1,5 +1,6 @@
 package com.complex_project.balanced_nutrition.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -18,6 +19,7 @@ public class RecipeBook {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_dish_collection", nullable = false)
+    @JsonIgnore
     private DishCollection idDishCollection;
 
     public Integer getId() {

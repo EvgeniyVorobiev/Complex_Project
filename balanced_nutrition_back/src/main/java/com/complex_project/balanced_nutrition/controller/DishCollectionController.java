@@ -40,5 +40,10 @@ public class DishCollectionController {
         List<DishCollection> dishCollections = dishCollectionService.getAllDishCollections();
         return new ResponseEntity<>(dishCollections, HttpStatus.OK);
     }
+    @GetMapping("/{id}")
+    public ResponseEntity<DishCollection> getById(@PathVariable int id){
+        DishCollection dishCollection = dishCollectionService.getById(id);
+        return new ResponseEntity<>(dishCollection, HttpStatus.OK);
+    }
 }
 ;

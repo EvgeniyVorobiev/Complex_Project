@@ -8,17 +8,22 @@ import DishSetCards from '../components/DishSetCards.vue'
 import TariffsComponent from '../components/tariffsComponent.vue'
 import DishInfoComponent from '../components/DishInfoComponent.vue'
 import ProductInfoComponent from '../components/ProductInfoComponent.vue'
+import ProductSetCardsComponent from '../components/ProductSetCardsComponent.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   { path: '/', name: 'Main', component: MainNoLoginView, props: true },
   { path: '/techCards', name: 'techCards', component: TechCardsComponent, props: true },
-  { path: '/dishSetCards', name: 'dishSetCards', component: DishSetCards, props: true },
+  //{ path: '/dishSetCards', name: 'dishSetCards', component: DishSetCards, props: true },
+  { path: '/dishSetCards/:id', name: 'dishSetCards', component: DishSetCards, props: true },
   { path: '/tariffs', name: 'tariffs', component: TariffsComponent, props: true },
   { path: '/main', name: 'main', component: MainComponent, props: true},
-  { path: '/dishInfo', name: 'dishInfo', component: DishInfoComponent, props: true},
-  { path: '/productInfo', name: 'productInfo', component: ProductInfoComponent, props: true}
+  { path: '/dishInfo/:id', name: 'dishInfo', component: DishInfoComponent, props: true},
+  //{ path: '/dishInfo', name: 'dishInfo', component: DishInfoComponent, props: true},
+  //{ path: '/productInfo', name: 'productInfo', component: ProductInfoComponent, props: true},
+  { path: '/productInfo/:id', name: 'productInfo', component: ProductInfoComponent, props: true},
+  { path: '/products', name: 'products', component: ProductSetCardsComponent, props: true}
   // {
   //   path: '/about',
   //   name: 'about',

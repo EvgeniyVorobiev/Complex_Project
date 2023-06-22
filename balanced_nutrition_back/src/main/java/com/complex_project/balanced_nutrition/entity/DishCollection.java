@@ -16,7 +16,7 @@ public class DishCollection {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_user")
-    //@JsonIgnore
+    @JsonIgnore
     private UserCp idUser;
 
     public Integer getId() {

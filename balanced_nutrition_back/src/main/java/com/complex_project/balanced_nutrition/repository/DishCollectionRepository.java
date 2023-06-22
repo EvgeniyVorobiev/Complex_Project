@@ -11,4 +11,6 @@ public interface DishCollectionRepository extends JpaRepository<DishCollection, 
     List<DishCollection> getAllDishCollections();
     @Query("select count(d) from Dish d join RecipeBook rb join DishCollection dc where dc.id = ?1")
     int numberOfDishes(Integer id);
+    @Query("select dc from DishCollection dc where dc.id = ?1")
+    DishCollection getById(Integer id);
 }
