@@ -11,7 +11,7 @@
             <b-container class="container">
                 <b-row class="row gy-5">
                     <b-col cols="3" v-for="productCollection in productCollections" :key="productCollection.id">
-                        <a class="cardSet" @click="showProductsForm">
+                        <a class="cardSet" @click="showProductsForm(productCollection)">
                             <b-card
                             :img-src="productCollection.imageLink"
                             img-alt="Image"
@@ -38,29 +38,82 @@
             </b-container>
         </div>
         <b-modal ref="products" hide-footer hide-header>
-                                <div class="container" id="productsForm">
+                                <div class="container" id="productsForm" style="text-align: center;">
                                     <div class="row">
                                             <div class="col-11">
-                                                <h2>Продукты</h2>
+                                                <h2>{{ this.selectedProductCollection.name }}</h2>
                                             </div>
                                             <div class="col-1" id="closeDiv">
                                             <b-icon class="close" icon="x-lg" @click="hideProductsForm"></b-icon>
                                             </div>
                                             <!-- <b-icon icon="x-lg" style="width: 30px; height: 30px; color:lightgray;"></b-icon> -->
     
+                                        </div>
                                     </div>
-                                </div>
-                                        <b-card>
+                                    <b-card>
+                                        <b-row>
+                                        <b-col cols="6">
+                                            <div class="product">
+                                                <p style="padding-top: 10px;">продукт 1</p>
+                                            </div>
+                                        </b-col>
+                                        <b-col cols="6">
+                                            <div class="product">
+                                                <p style="padding-top: 10px;">продукт 2</p>
+                                            </div>
+                                        </b-col>
+                                        
+                                        <b-col cols="6" v-if="userIsAuthorised">
+                                            <div class="product">
+                                                <p style="padding-top: 10px;" @click="showProductCreation">добавить продукт</p>
+                                            </div>
+                                        </b-col>
+                                        </b-row>
+                                    </b-card>
+    
+    
+                            </b-modal>
 
-                                        <div class="col-6">
-                                            продукт1
-                                        </div>
-                                        <div class="col-6">
-                                            продукт2
-                                        </div>
-                                        </b-card>
-    
-    
+                            <b-modal ref="productCreation" hide-footer hide-header>
+                                <b-container id="productsForm" style="text-align: center;">
+                                    <b-row align-h="center" class="productCreationRow">
+                                        <b-col cols="11"><h3>Создание продукта</h3></b-col>
+                                        <b-col cols="1" id="closeDiv">
+                                            <b-icon class="close" icon="x-lg" @click="hideProductCreation"></b-icon>
+                                            </b-col>
+                                        <b-col cols="8">
+                                            <b-form-input v-model="productName" type="text" id="productName"
+                                             placeholder="Введите название продукта" value=""></b-form-input>
+                                        </b-col>
+                                        <b-col cols="8">
+                                            <b-form-input v-model="productWeight" type="text" id="productWeight"
+                                             placeholder="Введите вес продукта" value=""></b-form-input>
+                                        </b-col>
+                                        <b-col cols="8">
+                                            <b-form-input v-model="productShelfLife" type="text" id="productShelfLife"
+                                             placeholder="Введите срок хранения" value=""></b-form-input>
+                                        </b-col>
+                                        <b-col cols="10">
+                                        <b-form-select v-model="selectedProductMeasure" :options="product_measure"
+                                         id="productMeasure">
+                                            <template #first>
+                                                <b-form-select-option :value="null" disabled>Выберите единицу измерения</b-form-select-option>
+                                            </template>
+                                        </b-form-select>
+                                        <b-col cols="8">
+                                            <p>Белки </p>
+                                        </b-col>
+                                        <b-col cols="4">
+                                            <b-form-input v-model="nutrient" type="text" id="nutrient"
+                                             placeholder="содержание" value=""></b-form-input>
+                                        </b-col>
+                                        <b-col cols="10">
+                                            <b-button id="productCollectionCreateButton" block pill
+                                             variant="primary" @click="createProduct">Создать</b-button>
+                                        </b-col>
+                                    </b-col>
+                                    </b-row>
+                                </b-container>
                             </b-modal>
 
 
@@ -69,7 +122,7 @@
                                 <b-container class="container" id="productCollection">
                                     <b-row align-h="center" class="row">
                                             <b-col cols="11">
-                                                <h3>Создание сборника продуктов</h3>
+                                                <h3 style="text-align: center;">Создание сборника продуктов</h3>
                                             </b-col>
                                             <b-col cols="1" id="closeDiv">
                                             <b-icon class="close" icon="x-lg" @click="hideProductCollectionCreation"></b-icon>
@@ -119,6 +172,7 @@
         images: [],
         productCollections: [],
         selectedImage: null,
+        selectedProductCollection: '',
         image_link: null
     };
     },
@@ -132,6 +186,14 @@
                     this.images.push({image_id: index, image_link: 'https://pbprog.ru/tk/img/tehnokarta/bluda/'+ index +'.jpg'});
                 }
                 console.log(this.images);
+            },
+            showProductCreation(){
+                this.$refs['productCreation'].show();
+                this.hideProductsForm();
+            },
+            hideProductCreation(){
+                this.$refs['productCreation'].hide();
+                this.showProductsForm();
             },
             getProductCollections(){
                 this.productCollections = [];
@@ -175,7 +237,9 @@
                     solid: true
                 })
             },
-            showProductsForm(){
+            showProductsForm(productCollection){
+                this.selectedProductCollection = productCollection;
+                console.log(this.selectedProductCollection.name);
                 this.$refs['products'].show()
             },
             hideProductsForm(){
@@ -262,5 +326,18 @@
     }
     #productCollectionCreateButton{
         margin-top:40px;
+    }
+    .product{
+        margin-top:20px;
+        box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
+        border-radius: 5px;
+        height:50px;
+        text-align: center;
+        align-items: center;
+        /* width:278px; */
+    }
+    .productCreationRow{
+        text-align: center;
+        align-items: center;
     }
     </style>

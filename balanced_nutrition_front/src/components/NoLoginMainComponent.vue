@@ -3,10 +3,10 @@
     <div class="container">
         <div class="row">
             <div class="col-8" id="table">
-                <h6 style="margin-top: 30%; text-align: center;">
+                <h6 style="margin-top: 30%; text-align: center;" v-if="authorisedUser">
                 Здесь вы могли бы составить меню, нужно только</h6>
-                <h6 style="text-align: center;" @click="showLoginModal">войти</h6>
-                <h6 style="text-align: center;">в приложение</h6>
+                <h6 style="text-align: center;" v-if="authorisedUser">войти</h6>
+                <h6 style="text-align: center;" v-if="authorisedUser">в приложение</h6>
             </div>
             <div class="col-3" id="nutrients">
                 
@@ -14,6 +14,7 @@
         </div>
     </div>
 </body>
+            
 </template>
 
 <script>

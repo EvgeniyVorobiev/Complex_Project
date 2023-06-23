@@ -7,7 +7,6 @@
                     <b-row class="row">
                         <b-col cols="4"><router-link to="/" id="programName">Детский сад. Питание</router-link></b-col>
 
-
                         <b-col cols="2"><b-dropdown  variant="link" no-caret toggle-class="text-decoration-none">
                             <template #button-content>
                             <p style="text-decoration: none;
@@ -62,8 +61,6 @@
                                             <template #first>
                                                 <b-form-select-option :value="null" disabled>Выберите группу</b-form-select-option>
                                             </template>
-                                                <!-- v-for="group in groups" -->
-                                                <!-- <b-form-select-option :value="group">group.text</b-form-select-option> -->
                                         </b-form-select>
                                     </b-col>
                                     <b-col cols="10">
